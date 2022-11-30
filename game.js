@@ -231,19 +231,6 @@ function startPressed() {
         score.leftPlayer = 0;
         score.rightPlayer = 0;
     });
-    window.addEventListener('keydown', function(e){
-    if (e.code == "Space") {
-        makeBlocksDisappear();
-        movement['left'] = true;
-        movement['up'] = true;
-        setTimeout(()=>{
-            startButton.style.opacity = 0;
-            setTimeout(()=>{startButton.style.display = 'none'}, 300);
-        }, 300);
-        score.leftPlayer = 0;
-        score.rightPlayer = 0;
-    }
-    });
 }
 
 function makeBlocksDisappear() {
