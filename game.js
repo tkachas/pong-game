@@ -3,6 +3,7 @@ let right = document.querySelector('.rightRocket');
 let left = document.querySelector('.leftRocket');
 let startButton = document.querySelector('.start-button');
 let startButtonAnim = document.querySelectorAll('.anim');
+let scoreBoard = document.querySelector('.score');
 
 let countDown = document.querySelector('.countDown');
 
@@ -41,7 +42,7 @@ let colors = ['#fee400', '#8b00fd', '#31b100'];
 
 let hits = 0;
 
-let ballSpeed = 1
+let ballSpeed = 2;
 
 let roundEnd = false;
 
@@ -79,9 +80,6 @@ function ballMovement() {
         ball.y += ballSpeed;
         ball.element.style.top = ball.y + 'px';
     }
-    if (hits % 5 == 0 && hits != 0 && ballSpeed != 3) {
-        ballSpeed += 1;
-    }
 }
 
 function ballMove() {
@@ -109,11 +107,12 @@ function ballMove() {
     }
     if (ball.x < 0) {
         score.rightPlayer += 1;
-        console.log(score.rightPlayer);
+        scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
         startAgain();
     }
     if (ball.x > 800) {
         score.leftPlayer += 1;
+        scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
         startAgain();
     }
     if (!roundEnd) {
@@ -126,6 +125,10 @@ function ballMove() {
 function startAgain() {
     ball.x = 390;
     ball.y = 240;
+    leftRocket.x = 225;
+    rightRocket.x = 225;
+    leftRocket.element.style.top = 225 + 'px';
+    rightRocket.element.style.top = 225 + 'px';
     ball.element.style.top = ball.y + 'px';
     ball.element.style.left = ball.x + 'px';
     movement['up'] = false;
@@ -147,7 +150,6 @@ function startAgain() {
         movement['down'] = true;
         movement['left'] = true;
     }, 3000);
-
 }
 
 function gameLoop() {
@@ -155,20 +157,29 @@ function gameLoop() {
         ballMove();
         controls();
     } else {
+        ballSpeed = 2;
         movement['up'] = false;
         movement['down'] = false;
         countDown.style.display = 'none';
+        startButton.style.display = 'block';
         startButton.style.opacity = 1;
         startPressed();
+    }
+    if (hits % 5 == 0 && hits != 0 && ballSpeed <= 3) {
+        ballSpeed += 0.1;
     }
 }
 
 
 function startPressed() {
     startButton.addEventListener('click', ()=> {
+        scoreBoard.innerText = '0 : 0';
         movement['left'] = true;
         movement['up'] = true;
-        setTimeout(()=>{startButton.style.opacity = 0}, 300);
+        setTimeout(()=>{
+            startButton.style.opacity = 0;
+            setTimeout(()=>{startButton.style.display = 'none'}, 300);
+        }, 300);
         score.leftPlayer = 0;
         score.rightPlayer = 0;
     });

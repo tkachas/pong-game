@@ -7,6 +7,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 .field {
     width: 800px;
     height: 500px;
+    top: 200px;
     background-color: #1a89c6;
     position: absolute;
     display: flex;
@@ -131,4 +132,33 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         font-size: 4em;
     }
     
+}
+
+.infoPanel {
+    width: 800px;
+    height: 200px;
+    position: absolute;
+    top:0;
+    background: #5474d2;
+    color: #f8aa4b;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2.5em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    list-style-position: inside;
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+}
+
+.score {
+    position: absolute;
 }
