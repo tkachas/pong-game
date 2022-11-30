@@ -154,6 +154,7 @@ function startAgain() {
     movement['left'] = false;
     movement['right'] = false;
     if (score.leftPlayer !== 5 && score.rightPlayer !== 5) {
+        ballSpeed = 2;
         setTimeout(()=>{
             countDown.style.display = 'flex';
             countDown.innerText = '3';
