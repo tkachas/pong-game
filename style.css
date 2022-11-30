@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+
 body {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -13,7 +16,8 @@ html, body {height: 100%; overflow: hidden}
 body{
 	margin:0;
 	padding:0;
-	font-family:"arial",heletica,sans-serif;
+	font-family: Audiowide;
+    letter-spacing: 2px;
 	font-size:12px;
     background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
 	-webkit-animation: 10s linear 0s normal none infinite animate;
@@ -66,12 +70,13 @@ body{
                 justify-content: center;
     }
     #rocket {
-        width: 10px;
+        width: 20px;
         height: 80px;
-        border-radius: 5px;
+        border-radius: 10px;
         position: absolute;
         background-color: #e74645;
-        border: 0.1px solid black;
+        box-shadow: 2px 1px 5px rgba(0,0,0,0.5);
+        background: radial-gradient(circle at 15px 20px, #e74645, #7b2020);
     }
 
     .leftRocket {
@@ -88,14 +93,13 @@ body{
 
     .ball {
         /* display: none; */
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         position: absolute;
-        background-color: #facd60;
+        background: radial-gradient(circle at 8px 8px, #facd60, #856b2e);
         border-radius: 50%;
-        top: 240px;
-        left: 390px;
-        border: 0.1px solid black;
+        top: 237.5px;
+        left: 387.5px;
     }
     .start {
         width: auto;
@@ -112,7 +116,7 @@ body{
                 align-items: center;
         position: absolute;
         color: #f8aa4b;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-family: Audiowide;
     }
     .start-button:hover {
         -webkit-transition-duration: 0.1s;
@@ -155,6 +159,7 @@ body{
     }
 
     .start-button {
+        text-decoration: underline;
         cursor: pointer;
         font-size: 4em;
     }
@@ -195,7 +200,7 @@ body{
         height: 100px;
         top: 150px;
         position: absolute;
-        font-family: 'Courier New', Courier, monospace;
+        font-family: Audiowide;
         font-size: 4em;
         color: #f8aa4b;
         -webkit-animation: countMove 1s infinite;
@@ -252,7 +257,7 @@ body{
             -ms-flex-align: center;
                 align-items: center;
         font-size: 2.5em;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-family: Audiowide;
     }
 
     .score {
@@ -281,6 +286,8 @@ body{
         background-color: #1a89c6;
         min-width: 100px;
         height: auto;
+        font-family: Audiowide;
+        letter-spacing: 2px;
         border: 3px solid #166590;
         padding-left: 20px;
         padding-right: 20px;

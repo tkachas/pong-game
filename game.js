@@ -101,7 +101,15 @@ function ballMovement() {
 }
 
 function ballMove() {
-    if ((ball.y >= rightRocket.x - 20 && ball.y <= rightRocket.x + 80) && ball.x + ballSpeed >= 760) {
+    if ((ball.y >= rightRocket.x - 25 && ball.y <= rightRocket.x + 80) && ball.x + ballSpeed >= 750) {
+        if (ball.y >= rightRocket.x - 26 && ball.y <= rightRocket.x + 1) {
+            movement['down'] = false;
+            movement['up'] = true;
+        }
+        if (ball.y >= rightRocket.x + 79 && ball.y <= rightRocket.x + 80) {
+            movement['down'] = true;
+            movement['up'] = false;
+        }
         movement['left'] = true;
         movement['right'] = false;
         wallHitSound.play();
@@ -109,7 +117,15 @@ function ballMove() {
         hits += 1;
         ballMovement();
     }
-    if ((ball.y >= leftRocket.x - 20 && ball.y <= leftRocket.x + 80) && ball.x - ballSpeed <= 20) {
+    if ((ball.y >= leftRocket.x - 25 && ball.y <= leftRocket.x + 80) && ball.x - ballSpeed <= 30) {
+        if (ball.y >= leftRocket.x - 26 && ball.y <= leftRocket.x + 1) {
+            movement['down'] = false;
+            movement['up'] = true;
+        }
+        if (ball.y >= leftRocket.x + 79 && ball.y <= leftRocket.x + 80) {
+            movement['down'] = true;
+            movement['up'] = false;
+        }
         movement['right'] = true;
         movement['left'] = false;
         hits += 1;
@@ -130,19 +146,19 @@ function ballMove() {
         ballMovement();
     }
     if (ball.x < 0) {
-        console.log(ballSpeed);
         goalSound.play();
         score.rightPlayer += 1;
         scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
         ballSpeed = 2;
+        rocketSpeed = 3;
         startAgain();
     }
     if (ball.x > 780) {
-        console.log(ballSpeed);
         goalSound.play();
         score.leftPlayer += 1;
         scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
         ballSpeed = 2;
+        rocketSpeed = 3;
         startAgain();
     }
     if (!roundEnd) {
@@ -212,7 +228,6 @@ function gameLoop() {
         ballSpeed += 0.5;
         hits = 0;
         if (ballSpeed >= 3) {
-            console.log('YEEEAAAAH');
             rocketSpeed += 1;
         }
     }
