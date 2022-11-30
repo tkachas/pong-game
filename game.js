@@ -125,10 +125,10 @@ function ballMove() {
 function startAgain() {
     ball.x = 390;
     ball.y = 240;
-    leftRocket.x = 225;
-    rightRocket.x = 225;
-    leftRocket.element.style.top = 225 + 'px';
-    rightRocket.element.style.top = 225 + 'px';
+    leftRocket.x = 210;
+    rightRocket.x = 210;
+    leftRocket.element.style.top = 210 + 'px';
+    rightRocket.element.style.top = 210 + 'px';
     ball.element.style.top = ball.y + 'px';
     ball.element.style.left = ball.x + 'px';
     movement['up'] = false;
