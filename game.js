@@ -5,6 +5,7 @@ let startButton = document.querySelector('.start-button');
 let startButtonAnim = document.querySelectorAll('.anim');
 let scoreBoard = document.querySelector('.score');
 let info = document.querySelectorAll('.controls');
+let fieldStyle = getComputedStyle(document.querySelector('.field'));
 
 // let hitSound = document.getElementById('hit');
 
@@ -123,11 +124,13 @@ function ballMove() {
     if (ball.x < 0) {
         score.rightPlayer += 1;
         scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
+        ballSpeed = 2;
         startAgain();
     }
     if (ball.x > 780) {
         score.leftPlayer += 1;
         scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
+        ballSpeed = 2;
         startAgain();
     }
     if (!roundEnd) {
@@ -174,6 +177,8 @@ function gameLoop() {
         ballMove();
         controls();
     } else {
+        document.querySelector('.field').style.cursor = 'auto';
+        startButton.style.cursor = 'auto';
         ballSpeed = 2;
         movement['up'] = false;
         movement['down'] = false;
@@ -184,14 +189,17 @@ function gameLoop() {
             info[i].style.display = 'none';
         }
     }
-    if (hits % 5 == 0 && hits != 0 && ballSpeed <= 3) {
-        ballSpeed += 0.1;
+    if (hits == 5 && hits != 0 && ballSpeed <= 3) {
+        ballSpeed += 0.5;
+        hits = 0;
     }
 }
 
 
 function startPressed() {
     startButton.addEventListener('click', ()=> {
+        document.querySelector('.field').style.cursor = 'none';
+        startButton.style.cursor = 'none';
         for (let i = 0; i < info.length; i++) {
             info[i].style.display = 'none';
         }
