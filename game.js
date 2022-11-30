@@ -6,6 +6,8 @@ let startButtonAnim = document.querySelectorAll('.anim');
 let scoreBoard = document.querySelector('.score');
 let info = document.querySelectorAll('.controls');
 
+// let hitSound = document.getElementById('hit');
+
 let countDown = document.querySelector('.countDown');
 
 
@@ -42,8 +44,12 @@ let movement = {};
 let colors = ['#fee400', '#8b00fd', '#31b100'];
 
 let hits = 0;
-let hitSound = new Audio();
-hitSound.src = "hit.wav";
+// let hitSound = new Audio();
+// hitSound.src = "hit.wav";
+
+let hitSound = new Howl({
+    src: ['hit.wav']
+});
 
 let ballSpeed = 2;
 
@@ -90,6 +96,7 @@ function ballMove() {
         movement['left'] = true;
         movement['right'] = false;
         hitSound.play();
+
         hits += 1;
         ballMovement();
     }
@@ -98,6 +105,7 @@ function ballMove() {
         movement['left'] = false;
         hits += 1;
         hitSound.play();
+        
         ballMovement();
     }
     if (ball.y - ballSpeed <= 0) {
@@ -115,7 +123,7 @@ function ballMove() {
         scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
         startAgain();
     }
-    if (ball.x > 800) {
+    if (ball.x > 780) {
         score.leftPlayer += 1;
         scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
         startAgain();
@@ -222,8 +230,6 @@ function controls() {
         }
     }
 }
-
-
 
 let speed = 200;
 
