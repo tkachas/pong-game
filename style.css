@@ -1,0 +1,134 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+html, body {margin: 0; height: 100%; overflow: hidden}
+.field {
+    width: 800px;
+    height: 500px;
+    background-color: #1a89c6;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+}
+#rocket {
+    width: 10px;
+    height: 80px;
+    border-radius: 5px;
+    position: absolute;
+    background-color: #e74645;
+}
+
+.leftRocket {
+    top: 210px;
+    left: 10px;
+    position: absolute;
+}
+
+.rightRocket {
+    top: 210px;
+    right: 10px;
+    position: absolute;
+}
+
+.ball {
+    /* display: none; */
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: #facd60;
+    border-radius: 50%;
+    top: 240px;
+    left: 390px;
+}
+.start {
+    width: auto;
+    top: 100px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: #f8aa4b;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.start-button:hover {
+    transition-duration: 0.1s;
+  }
+  
+  .start-button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:50%;
+    width: 100%;
+    height: 0.1%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 40px white;
+}
+  
+  .start-button:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:50%;
+    opacity: 1;
+    transition: 0s;
+  }
+  
+  .start-button:active {
+    top: 1px;
+  }
+
+.start-button {
+    cursor: pointer;
+    font-size: 4em;
+}
+.start-button:hover {
+    animation: textSize 1s infinite;
+    transition: 0.3s ease;
+}
+
+@keyframes textSize {
+    0% {
+        font-size: 4em;
+    }
+    50% {
+        font-size: 3.5em;
+    }
+    100% {
+        font-size: 4em;
+    }
+}
+
+.countDown {
+    width: 100px;
+    height: 100px;
+    top: 5px;
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 4em;
+    color: #f8aa4b;
+    animation: countMove 1s infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes countMove {
+    0% {
+        font-size: 4em;
+    }
+    50% {
+        font-size: 3em;
+    }
+    100% {
+        font-size: 4em;
+    }
+    
+}
