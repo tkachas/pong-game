@@ -75,7 +75,9 @@ body{
         border-radius: 10px;
         position: absolute;
         background-color: #e74645;
-        box-shadow: 2px 1px 5px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 2px 1px 5px rgba(0,0,0,0.5);
+                box-shadow: 2px 1px 5px rgba(0,0,0,0.5);
+        background: -o-radial-gradient(15px 20px, circle, #e74645, #7b2020);
         background: radial-gradient(circle at 15px 20px, #e74645, #7b2020);
     }
 
@@ -96,6 +98,7 @@ body{
         width: 25px;
         height: 25px;
         position: absolute;
+        background: -o-radial-gradient(8px 8px, circle, #facd60, #856b2e);
         background: radial-gradient(circle at 8px 8px, #facd60, #856b2e);
         border-radius: 50%;
         top: 237.5px;
@@ -302,9 +305,15 @@ body{
         width: 600px;
         left: 100px;
         top: 50px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
 
     .player.started {
