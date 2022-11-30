@@ -4,6 +4,7 @@ let left = document.querySelector('.leftRocket');
 let startButton = document.querySelector('.start-button');
 let startButtonAnim = document.querySelectorAll('.anim');
 let scoreBoard = document.querySelector('.score');
+let info = document.querySelectorAll('.controls');
 
 let countDown = document.querySelector('.countDown');
 
@@ -167,6 +168,9 @@ function gameLoop() {
         countDown.style.display = 'none';
         startButton.style.display = 'block';
         startButton.style.opacity = 1;
+        for (let i = 0; i < info.length; i++) {
+            info[i].style.display = 'none';
+        }
         startPressed();
     }
     if (hits % 5 == 0 && hits != 0 && ballSpeed <= 3) {
@@ -177,6 +181,9 @@ function gameLoop() {
 
 function startPressed() {
     startButton.addEventListener('click', ()=> {
+        for (let i = 0; i < info.length; i++) {
+            info[i].style.display = 'none';
+        }
         scoreBoard.innerText = '0 : 0';
         movement['left'] = true;
         movement['up'] = true;

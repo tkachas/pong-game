@@ -8,20 +8,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 class="mobile">Not available for mobile devices, sorry.</h1>
-    <div class="infoPanel">
-        <ul>First Player:
-            <li>A - up</li>
-            <li>Z - down</li>
-        </ul>
-        <ul>Second Player:
-            <li>ArrowUp</li>
-            <li>ArrowDown</li>
-        </ul>
-        <div class="score"></div>
+    <div id="clouds">
+        <div class="cloud x1"></div>
+        <!-- Time for multiple clouds to dance around -->
+        <div class="cloud x3"></div>
+        <div class="cloud x4"></div>
+        <div class="cloud x5"></div>
     </div>
+    <h1 class="mobile">Not available for mobile devices, sorry.</h1>
+    <div class="border"></div>
 
     <div class="field">
+        <div class="infoPanel">
+            <ul class="controls">Player 1
+                <li>A - up</li>
+                <li>Z - down</li>
+            </ul>
+            <ul class="controls">Player 2
+                <li>ArrowUp</li>
+                <li>ArrowDown</li>
+            </ul>
+            <div class="score"></div>
+        </div>
 
         <div class="start">
             <p class="start-button">START</p>
