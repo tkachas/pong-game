@@ -6,6 +6,9 @@ body {
 html, body {margin: 0; height: 100%; overflow: hidden}
 
 @media screen and (min-width: 800px) {
+    .mobile {
+        display: none;
+    }
     .field {
         width: 800px;
         height: 500px;
