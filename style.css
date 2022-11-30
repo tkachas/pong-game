@@ -255,15 +255,56 @@ body{
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
 
-    ul {
-        list-style-type: none;
-        list-style-position: inside;
-        text-align: center;
-    }
-
     .score {
         position: absolute;
+        top: 55px;
     }
+    .score.result {
+        top: 130px;
+        font-size: 2em;
+    }
+    .control1 {
+        position: absolute;
+        width: 77px;
+        height: 160px;
+        left: 100px;
+        top: 170px;
+    }
+    .control2 {
+        position: absolute;
+        width: 77px;
+        height: 160px;
+        right: 100px;
+        top: 170px;
+    }
+    .player {
+        background-color: #1a89c6;
+        min-width: 100px;
+        height: auto;
+        border: 3px solid #166590;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: #f8aa4b;
+        font-size: 1em;
+        border-radius: 10px;
+        outline: none;
+        text-align: center;
+    }
+    .players {
+        position: absolute;
+        width: 600px;
+        left: 100px;
+        top: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .player.started {
+        background-color: #1a89c6;
+        border: 0px;
+    }
+
 }
 
 @media screen and (max-width: 799px) {
