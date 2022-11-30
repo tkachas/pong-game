@@ -43,6 +43,8 @@ let movement = {};
 
 let colors = ['#fee400', '#8b00fd', '#31b100'];
 
+let randomMove = [['left', 'right'], ['up', 'down']];
+
 let hits = 0;
 // let hitSound = new Audio();
 // hitSound.src = "hit.wav";
@@ -160,8 +162,9 @@ function startAgain() {
     }, 2000);
     setTimeout(()=>{
         countDown.style.display = 'none';
-        movement['down'] = true;
-        movement['left'] = true;
+        console.log(getRandomInt(2));
+        movement[randomMove[0][getRandomInt(2)]] = true;
+        movement[randomMove[1][getRandomInt(2)]] = true;
     }, 3000);
 }
 
@@ -193,8 +196,8 @@ function startPressed() {
             info[i].style.display = 'none';
         }
         scoreBoard.innerText = '0 : 0';
-        movement['left'] = true;
-        movement['up'] = true;
+        movement[randomMove[0][getRandomInt(2)]] = true;
+        movement[randomMove[1][getRandomInt(2)]] = true;
         setTimeout(()=>{
             startButton.style.opacity = 0;
             setTimeout(()=>{startButton.style.display = 'none'}, 300);
@@ -230,6 +233,9 @@ function controls() {
         }
     }
 }
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 
 let speed = 200;
 
