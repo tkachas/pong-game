@@ -41,6 +41,8 @@ let movement = {};
 let colors = ['#fee400', '#8b00fd', '#31b100'];
 
 let hits = 0;
+let hitSound = new Audio();
+hitSound.src = "hit.wav";
 
 let ballSpeed = 2;
 
@@ -86,6 +88,7 @@ function ballMove() {
     if ((ball.y >= rightRocket.x - 20 && ball.y <= rightRocket.x + 80) && ball.x + ballSpeed >= 760) {
         movement['left'] = true;
         movement['right'] = false;
+        hitSound.play();
         hits += 1;
         ballMovement();
     }
@@ -93,6 +96,7 @@ function ballMove() {
         movement['right'] = true;
         movement['left'] = false;
         hits += 1;
+        hitSound.play();
         ballMovement();
     }
     if (ball.y - ballSpeed <= 0) {
