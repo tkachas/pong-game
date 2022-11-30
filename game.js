@@ -150,22 +150,23 @@ function startAgain() {
     movement['down'] = false;
     movement['left'] = false;
     movement['right'] = false;
-    setTimeout(()=>{
-        countDown.style.display = 'flex';
-        countDown.innerText = '3';
-    }, 0);
-    setTimeout(()=>{
-        countDown.innerText = '2';
-    }, 1000);
-    setTimeout(()=>{
-        countDown.innerText = '1';
-    }, 2000);
-    setTimeout(()=>{
-        countDown.style.display = 'none';
-        console.log(getRandomInt(2));
-        movement[randomMove[0][getRandomInt(2)]] = true;
-        movement[randomMove[1][getRandomInt(2)]] = true;
-    }, 3000);
+    if (score.leftPlayer !== 5 && score.rightPlayer !== 5) {
+        setTimeout(()=>{
+            countDown.style.display = 'flex';
+            countDown.innerText = '3';
+        }, 0);
+        setTimeout(()=>{
+            countDown.innerText = '2';
+        }, 1000);
+        setTimeout(()=>{
+            countDown.innerText = '1';
+        }, 2000);
+        setTimeout(()=>{
+            countDown.style.display = 'none';
+            movement[randomMove[0][getRandomInt(2)]] = true;
+            movement[randomMove[1][getRandomInt(2)]] = true;
+        }, 3000);
+    }
 }
 
 function gameLoop() {
@@ -182,7 +183,6 @@ function gameLoop() {
         for (let i = 0; i < info.length; i++) {
             info[i].style.display = 'none';
         }
-        startPressed();
     }
     if (hits % 5 == 0 && hits != 0 && ballSpeed <= 3) {
         ballSpeed += 0.1;
@@ -196,8 +196,8 @@ function startPressed() {
             info[i].style.display = 'none';
         }
         scoreBoard.innerText = '0 : 0';
-        movement[randomMove[0][getRandomInt(2)]] = true;
-        movement[randomMove[1][getRandomInt(2)]] = true;
+        movement['left'] = true;
+        movement['up'] = true;
         setTimeout(()=>{
             startButton.style.opacity = 0;
             setTimeout(()=>{startButton.style.display = 'none'}, 300);
