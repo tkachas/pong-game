@@ -198,10 +198,10 @@ function ballMove() {
 function startAgain() {
     ball.x = 390;
     ball.y = 240;
-    leftRocket.x = 210;
-    rightRocket.x = 210;
-    leftRocket.element.style.top = 210 + 'px';
-    rightRocket.element.style.top = 210 + 'px';
+    leftRocket.x = ((500 - parseInt(leftStyle.height))/2);
+    rightRocket.x = ((500 - parseInt(rightStyle.height))/2);
+    leftRocket.element.style.top = ((500 - parseInt(leftStyle.height))/2) + 'px';
+    rightRocket.element.style.top = ((500 - parseInt(rightStyle.height))/2) + 'px';
     ball.element.style.top = ball.y + 'px';
     ball.element.style.left = ball.x + 'px';
     movement['up'] = false;
@@ -225,6 +225,8 @@ function startAgain() {
             movement[randomMove[0][getRandomInt(2)]] = true;
             movement[randomMove[1][getRandomInt(2)]] = true;
             boostAction(enlarger);
+            leftRocket.element.style.top = ((500 - parseInt(leftStyle.height))/2) + 'px';
+            rightRocket.element.style.top = ((500 - parseInt(rightStyle.height))/2) + 'px';
         }, 3000);
     }
 }
@@ -310,6 +312,12 @@ function boostAction(boost) {
     }
     if(boostAllow.playerLeft) {
         boost.element.style.display = 'flex';
+        leftRocket.element.style.height = 200 +'px';
+        setTimeout(()=>{
+            leftRocket.element.style.height = 80 +'px';
+            boost.element.style.display = 'none';
+        }, 10000);
+        boostAllow.playerLeft = false;
     }
     
 }

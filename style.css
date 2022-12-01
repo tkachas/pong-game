@@ -42,7 +42,7 @@ body{
         .border {
             width: 1408px;
             height: 600px;
-            top:150px;
+            top:50px;
             position: absolute;
             background-image: url("border.png");
         }
@@ -51,7 +51,7 @@ body{
         .border {
             width: 900px;
             height: 570px;
-            top:165px;
+            top:50px;
             position: absolute;
             background-image: url("border-smaller.png");
         }
@@ -59,7 +59,7 @@ body{
     .field {
         width: 800px;
         height: 500px;
-        top: 200px;
+        top: 100px;
         background-color: #1a89c6;
         position: absolute;
         display: -webkit-box;
@@ -71,7 +71,7 @@ body{
     }
     #rocket {
         width: 20px;
-        height: 80px;
+        height: 100px;
         border-radius: 10px;
         position: absolute;
         background-color: #e74645;
