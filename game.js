@@ -17,6 +17,7 @@ let countDown = document.querySelector('.countDown');
 const rightStyle = getComputedStyle(right);
 const leftStyle = getComputedStyle(left);
 const ballStyle = getComputedStyle(document.querySelector('.ball'));
+const enlargerStyle = getComputedStyle(document.querySelector('.enlarger'));
 
 // let leftIsUp = false;
 // let rightIsUp = false;
@@ -39,6 +40,12 @@ let score = {
     leftPlayer: 0,
     rightPlayer: 0
 };
+
+let enlarger = {
+    x: parseInt(enlargerStyle.left),
+    y: parseInt(enlargerStyle.top),
+    element: document.querySelector('.enlarger')
+}
 
 let keyboard = {};
 
@@ -64,6 +71,12 @@ let rocketSpeed = 3;
 
 let roundEnd = false;
 
+let leftGoalRow = [];
+let rightGoalRow = [];
+let boostAllow = {
+    playerLeft: false,
+    playerRight: false
+};
 
 window.addEventListener('keydown', function(e){
   keyboard[e.code] = true;
@@ -100,13 +113,15 @@ function ballMovement() {
     }
 }
 
+console.log();
+
 function ballMove() {
-    if ((ball.y >= rightRocket.x - 25 && ball.y <= rightRocket.x + 80) && ball.x + ballSpeed >= 750) {
-        if (ball.y >= rightRocket.x - 26 && ball.y <= rightRocket.x + 1) {
+    if ((ball.y >= rightRocket.x - parseInt(ballStyle.width) && ball.y <= rightRocket.x + parseInt(rightStyle.height)) && ball.x + ballSpeed >= 750) {
+        if (ball.y >= rightRocket.x - (parseInt(ballStyle.width) + 1) && ball.y <= rightRocket.x + 1) {
             movement['down'] = false;
             movement['up'] = true;
         }
-        if (ball.y >= rightRocket.x + 79 && ball.y <= rightRocket.x + 80) {
+        if (ball.y >= rightRocket.x + (parseInt(rightStyle.height) - 1) && ball.y <= rightRocket.x + parseInt(rightStyle.height)) {
             movement['down'] = true;
             movement['up'] = false;
         }
@@ -117,12 +132,12 @@ function ballMove() {
         hits += 1;
         ballMovement();
     }
-    if ((ball.y >= leftRocket.x - 25 && ball.y <= leftRocket.x + 80) && ball.x - ballSpeed <= 30) {
-        if (ball.y >= leftRocket.x - 26 && ball.y <= leftRocket.x + 1) {
+    if ((ball.y >= leftRocket.x - parseInt(ballStyle.width) && ball.y <= leftRocket.x + parseInt(leftStyle.height)) && ball.x - ballSpeed <= 30) {
+        if (ball.y >= leftRocket.x - (parseInt(ballStyle.width) + 1) && ball.y <= leftRocket.x + 1) {
             movement['down'] = false;
             movement['up'] = true;
         }
-        if (ball.y >= leftRocket.x + 79 && ball.y <= leftRocket.x + 80) {
+        if (ball.y >= leftRocket.x + (parseInt(leftStyle.height) - 1) && ball.y <= leftRocket.x + parseInt(leftStyle.height)) {
             movement['down'] = true;
             movement['up'] = false;
         }
@@ -148,6 +163,12 @@ function ballMove() {
     if (ball.x < 0) {
         goalSound.play();
         score.rightPlayer += 1;
+        rightGoalRow.push(1);
+        leftGoalRow = [];
+        if (rightGoalRow.length == 2) {
+            boostAllow.playerRight = true;
+            rightGoalRow = [];
+        }
         scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
         ballSpeed = 2;
         rocketSpeed = 3;
@@ -156,6 +177,12 @@ function ballMove() {
     if (ball.x > 780) {
         goalSound.play();
         score.leftPlayer += 1;
+        rightGoalRow = [];
+        leftGoalRow.push(1);
+        if (leftGoalRow.length == 2) {
+            boostAllow.playerLeft = true;
+            leftGoalRow = [];
+        }
         scoreBoard.innerText = score.leftPlayer + ' : ' + score.rightPlayer;
         ballSpeed = 2;
         rocketSpeed = 3;
@@ -197,6 +224,7 @@ function startAgain() {
             countDown.style.display = 'none';
             movement[randomMove[0][getRandomInt(2)]] = true;
             movement[randomMove[1][getRandomInt(2)]] = true;
+            boostAction(enlarger);
         }, 3000);
     }
 }
@@ -206,23 +234,7 @@ function gameLoop() {
         ballMove();
         controls();
     } else {
-        document.querySelector('.field').style.cursor = 'auto';
-        startButton.style.cursor = 'auto';
-        ballSpeed = 2;
-        rocketSpeed = 3;
-        movement['up'] = false;
-        movement['down'] = false;
-        countDown.style.display = 'none';
-        startButton.style.display = 'block';
-        startButton.style.opacity = 1;
-        for (let i = 0; i< playerInputs.length; i++) {
-            playerInputs[i].readOnly = false;
-            playerInputs[i].classList.remove('started');
-        }
-        scoreBoard.classList.add('result');
-        for (let i = 0; i < info.length; i++) {
-            info[i].style.display = 'none';
-        }
+        makeBlocksAppear();
     }
     if (hits == 5 && hits != 0 && ballSpeed <= 4) {
         ballSpeed += 0.5;
@@ -264,27 +276,65 @@ function makeBlocksDisappear() {
     scoreBoard.innerText = '0 : 0';
 }
 
+function makeBlocksAppear() {
+    document.querySelector('.field').style.cursor = 'auto';
+    startButton.style.cursor = 'auto';
+    ballSpeed = 2;
+    rocketSpeed = 3;
+    movement['up'] = false;
+    movement['down'] = false;
+    countDown.style.display = 'none';
+    startButton.style.display = 'block';
+    startButton.style.opacity = 1;
+    for (let i = 0; i< playerInputs.length; i++) {
+        playerInputs[i].readOnly = false;
+        playerInputs[i].classList.remove('started');
+    }
+    scoreBoard.classList.add('result');
+    for (let i = 0; i < info.length; i++) {
+        info[i].style.display = 'none';
+    }
+}
+
+console.log(parseInt(enlargerStyle.left));
+
+function boostAction(boost) {
+    if (boostAllow.playerRight) {
+        boost.element.style.display = 'flex';
+        rightRocket.element.style.height = 200 +'px';
+        setTimeout(()=>{
+            rightRocket.element.style.height = 80 +'px';
+            boost.element.style.display = 'none';
+        }, 10000);
+        boostAllow.playerRight = false;
+    }
+    if(boostAllow.playerLeft) {
+        boost.element.style.display = 'flex';
+    }
+    
+}
+
 function controls() {
     if (keyboard["ArrowUp"]) {
-        if (rightRocket.x - rocketSpeed >= 0) {
+        if (rightRocket.x - rocketSpeed > 0) {
             rightRocket.x -= rocketSpeed;
             rightRocket.element.style.top = rightRocket.x + 'px';
         }
     }
     if (keyboard["KeyA"]) {
-        if (leftRocket.x - rocketSpeed >= 0) {
+        if (leftRocket.x - rocketSpeed > 0) {
             leftRocket.x -= rocketSpeed;
             leftRocket.element.style.top = leftRocket.x + 'px';
         }
     }
     if (keyboard["ArrowDown"]) {
-        if (rightRocket.x + rocketSpeed <= 420) {
+        if (rightRocket.x + rocketSpeed <= (500 - parseInt(rightStyle.height))) {
             rightRocket.x += rocketSpeed;
             rightRocket.element.style.top = rightRocket.x + 'px';
         }
     }
     if (keyboard["KeyZ"]) {
-        if (leftRocket.x + rocketSpeed <= 420) {
+        if (leftRocket.x + rocketSpeed <= (500 - parseInt(leftStyle.height))) {
             leftRocket.x += rocketSpeed;
             leftRocket.element.style.top = leftRocket.x + 'px';
         }
