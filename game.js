@@ -225,8 +225,6 @@ function startAgain() {
             movement[randomMove[0][getRandomInt(2)]] = true;
             movement[randomMove[1][getRandomInt(2)]] = true;
             boostAction(enlarger);
-            leftRocket.element.style.top = ((500 - parseInt(leftStyle.height))/2) + 'px';
-            rightRocket.element.style.top = ((500 - parseInt(rightStyle.height))/2) + 'px';
         }, 3000);
     }
 }
@@ -305,7 +303,7 @@ function boostAction(boost) {
         boost.element.style.display = 'flex';
         rightRocket.element.style.height = 200 +'px';
         setTimeout(()=>{
-            rightRocket.element.style.height = 80 +'px';
+            rightRocket.element.style.height = 100 +'px';
             boost.element.style.display = 'none';
         }, 10000);
         boostAllow.playerRight = false;
@@ -314,7 +312,7 @@ function boostAction(boost) {
         boost.element.style.display = 'flex';
         leftRocket.element.style.height = 200 +'px';
         setTimeout(()=>{
-            leftRocket.element.style.height = 80 +'px';
+            leftRocket.element.style.height = 100 +'px';
             boost.element.style.display = 'none';
         }, 10000);
         boostAllow.playerLeft = false;
