@@ -299,6 +299,8 @@ function makeBlocksAppear() {
 console.log(parseInt(enlargerStyle.left));
 
 function boostAction(boost) {
+    let text = enlarger.element.innerText;
+    let countDown;
     if (boostAllow.playerRight) {
         boost.element.style.display = 'flex';
         rightRocket.element.style.height = 200 +'px';
@@ -306,6 +308,15 @@ function boostAction(boost) {
             rightRocket.element.style.height = 100 +'px';
             boost.element.style.display = 'none';
         }, 10000);
+        countDown = 10;
+        for (let i = 0; i <= 10000; i += 1000) {
+            setTimeout(()=>{
+                enlarger.element.innerText = text;
+                enlarger.element.innerText += ` - ${countDown}`;
+                countDown--;
+                console.log('haha');
+            }, i);
+        }
         boostAllow.playerRight = false;
     }
     if(boostAllow.playerLeft) {
@@ -315,6 +326,15 @@ function boostAction(boost) {
             leftRocket.element.style.height = 100 +'px';
             boost.element.style.display = 'none';
         }, 10000);
+        countDown = 10;
+        for (let i = 0; i <= 10000; i += 1000) {
+            setTimeout(()=>{
+                enlarger.element.innerText = text;
+                enlarger.element.innerText += ` - ${countDown}`;
+                countDown--;
+                console.log('haha');
+            }, i);
+        }
         boostAllow.playerLeft = false;
     }
     
