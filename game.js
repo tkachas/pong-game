@@ -45,7 +45,7 @@ let enlarger = {
     x: parseInt(enlargerStyle.left),
     y: parseInt(enlargerStyle.top),
     element: document.querySelector('.enlarger')
-}
+};
 
 let keyboard = {};
 
@@ -317,6 +317,9 @@ function boostAction(boost) {
                 console.log('haha');
             }, i);
         }
+        setTimeout(()=>{
+            enlarger.element.innerText = text;
+        }, 10000);
         boostAllow.playerRight = false;
     }
     if(boostAllow.playerLeft) {
@@ -335,6 +338,9 @@ function boostAction(boost) {
                 console.log('haha');
             }, i);
         }
+        setTimeout(()=>{
+            enlarger.element.innerText = text;
+        }, 10000);
         boostAllow.playerLeft = false;
     }
     
