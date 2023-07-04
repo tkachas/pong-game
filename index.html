@@ -1,58 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.core.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1 class="mobile">Not available for mobile devices, sorry.</h1>
     <div class="border"></div>
 
     <div class="field">
-        <div class="infoPanel">
-            <div class="players">
-                <input class="player" type="text" value="Player 1">
-                <input class="player" type="text" value="Player 2">
-            </div>
-
-            <div class="control1">
-                <img src="control1.png" width="100%" height="100%">
-            </div>
-            <div class="control2">
-                <img src="control2.png" width="100%" height="100%">
-            </div>
-            <!-- <ul class="controls">Player 1
-                <li>A - up</li>
-                <li>Z - down</li>
-            </ul>
-            <ul class="controls">Player 2
-                <li>ArrowUp</li>
-                <li>ArrowDown</li>
-            </ul> -->
-            <div class="score"></div>
+      <div class="infoPanel">
+        <div class="players">
+          <input class="player" type="text" value="Player 1" />
+          <input class="player" type="text" value="Player 2" />
         </div>
 
-        <div class="start">
-            <p class="start-button">START</p>
+        <div class="control1">
+          <img src="./content/control1.png" width="100%" height="100%" />
         </div>
+        <div class="control2">
+          <img src="./content/control2.png" width="100%" height="100%" />
+        </div>
+        <div class="score"></div>
+      </div>
 
-        <div class="countDown"></div>
+      <div class="start">
+        <p class="start-button">START</p>
+      </div>
 
-        <div id="rocket" class="leftRocket"></div>
+      <div class="countDown"></div>
 
-        <div id="rocket" class="rightRocket"></div>
+      <div id="rocket" class="leftRocket"></div>
 
-        <div class="ball"></div>
+      <div id="rocket" class="rightRocket"></div>
 
-                <div id="boost" class="enlarger">x2 for 10 sec</div>
-        
+      <div class="ball"></div>
 
+      <div id="boost" class="enlarger">x2 for 10 sec</div>
     </div>
 
     <script src="game.js"></script>
-</body>
+  </body>
 </html>
